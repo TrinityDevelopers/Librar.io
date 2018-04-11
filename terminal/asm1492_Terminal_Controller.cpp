@@ -106,6 +106,8 @@ void Terminal_Controller::init() {
 	functions.push_back(new Login_Function(this, "Administrator"));
 	functions.push_back(new Login_Function(this, "Librarian"));
 	functions.push_back(new Login_Function(this, "Customer"));
+	functions.push_back(new Load_Function(this));
+	functions.push_back(new Save_Function(this));
 }
 
 void Customer_Login_Controller::init() {

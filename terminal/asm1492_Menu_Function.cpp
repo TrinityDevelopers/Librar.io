@@ -174,3 +174,11 @@ bool Customer_Login_Function::operator()() {
 bool Logout_Function::operator()() {
 	return false;
 }
+
+bool Load_Function::operator()() {
+	return true;
+}
+
+bool Save_Function::operator()() {
+	return true;
+}
