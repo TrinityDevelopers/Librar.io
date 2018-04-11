@@ -1,6 +1,6 @@
 CXX := g++
 CXXFLAGS := -std=c++11
-TARGET := asm1492_main
+TARGET := Librario
 
 SRCS := $(wildcard *.cpp media/*.cpp terminal/*.cpp)
 OBJS := $(patsubst %.cpp,%.o,$(SRCS))
