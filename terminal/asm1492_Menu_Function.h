@@ -128,3 +128,17 @@ public:
 	string get_name() { return "Print Catalog"; };
 	bool operator()();
 };
+
+class Load_Function : public Menu_Function {
+public:
+	Load_Function(Terminal_Controller* control) : Menu_Function(control) {};
+	string get_name() { return "Load Data"; };
+	bool operator()();
+};
+
+class Save_Function : public Menu_Function {
+public:
+	Save_Function(Terminal_Controller* control) : Menu_Function(control) {};
+	string get_name() { return "Save Data"; };
+	bool operator()();
+};
