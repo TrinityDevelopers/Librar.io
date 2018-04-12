@@ -1,5 +1,5 @@
 CXX := g++
-CXXFLAGS := -std=c++11
+CXXFLAGS := -std=c++11 -g
 TARGET := Librario
 
 SRCS := $(wildcard *.cpp media/*.cpp terminal/*.cpp)

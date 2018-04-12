@@ -5,9 +5,7 @@
 #include "asm1492_Library.h"
 
 bool Transaction_Item::is_overdue(Date current) {
-	if(due_date < current)
-		return true;
-	return false;
+	return due_date < current;
 }
 
 string Transaction_Item::to_string() {
@@ -33,11 +31,15 @@ double Transaction_Item::calculate_fee(Date check_in) {
 }
 
 bool Transaction_Item::contains(Bundle* bundle_) {
-	return this->bundle == bundle_;
+  if(this->bundle != NULL)
+		return this->bundle == bundle_;
+	return false;
 }
 
 bool Transaction_Item::contains(Media* media_) {
-	return this->media == media_;
+	if(this->media != NULL)
+		return this->media == media_;
+	return false;
 }
 
 void Transaction_Item::save(Json::Value& item) {

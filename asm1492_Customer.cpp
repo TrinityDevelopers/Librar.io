@@ -31,7 +31,7 @@ void Customer::add_transaction_item(Transaction_Item item) {
 }
 
 void Customer::remove_transaction_item(Media* media, Date check_in) {
-	for(auto it = checked_out_items.begin(); it != checked_out_items.end(); ++it){
+	for(auto it = checked_out_items.begin(); it != checked_out_items.end(); it++){
 		if((*it).contains(media)) {
 			balance += (*it).calculate_fee(check_in);
 			checked_out_items.erase(it);
@@ -40,10 +40,11 @@ void Customer::remove_transaction_item(Media* media, Date check_in) {
 }
 
 void Customer::remove_transaction_item(Bundle* bundle, Date check_in) {
-	for(auto it = checked_out_items.begin(); it != checked_out_items.end(); ++it){
+	for(auto it = checked_out_items.begin(); it != checked_out_items.end(); it++){
 		if((*it).contains(bundle)) {
 			balance += (*it).calculate_fee(check_in);
 			checked_out_items.erase(it);
+			return;
 		}
 	}
 }
