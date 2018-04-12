@@ -35,6 +35,7 @@ void Customer::remove_transaction_item(Media* media, Date check_in) {
 		if((*it).contains(media)) {
 			balance += (*it).calculate_fee(check_in);
 			checked_out_items.erase(it);
+			return;
 		}
 	}
 }

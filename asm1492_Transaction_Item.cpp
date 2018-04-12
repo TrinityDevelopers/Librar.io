@@ -31,7 +31,7 @@ double Transaction_Item::calculate_fee(Date check_in) {
 }
 
 bool Transaction_Item::contains(Bundle* bundle_) {
-  if(this->bundle != NULL)
+	if(this->bundle != NULL)
 		return this->bundle == bundle_;
 	return false;
 }
