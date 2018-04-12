@@ -16,3 +16,15 @@ ostream& operator<<(ostream& ost, const Video_Game& game_two) {
 double Video_Game::get_daily_fee() {
 	return 1.00;
 }
+
+void Video_Game::save(Json::Value& game) {
+	Media::save(game);
+	game["release_year"] = release_year;
+	game["studio"] = studio;
+}
+
+void Video_Game::load(Json::Value& game) {
+	Media::load(game);
+	release_year = game.get("release_year", -1).asInt();
+	studio = game.get("studio", "unknown").asString();
+}

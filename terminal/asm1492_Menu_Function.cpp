@@ -6,6 +6,7 @@
 #include "../asm1492_Customer.h"
 #include "../asm1492_Librarian.h"
 #include "../asm1492_Transaction.h"
+#include "../asm1492_Transaction_Item.h"
 #include "../media/asm1492_Media.h"
 #include "../media/asm1492_Book.h"
 #include "../media/asm1492_Movie.h"
@@ -176,9 +177,15 @@ bool Logout_Function::operator()() {
 }
 
 bool Load_Function::operator()() {
+	if(!controller->get_library()->load("librario_save.json"))
+		controller->get_view()->load_fail();
+	else
+		controller->get_view()->load();
 	return true;
 }
 
 bool Save_Function::operator()() {
+	controller->get_library()->save("librario_save.json");
+	controller->get_view()->save();
 	return true;
 }

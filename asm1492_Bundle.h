@@ -4,6 +4,7 @@
 #include <vector>
 #include <sstream>
 
+#include "json/asm1492_json.h"
 #include "media/asm1492_Media.h"
 
 class Bundle {
@@ -28,6 +29,8 @@ public:
 	string to_compact_string();
 
 	friend ostream& operator<<(ostream& ost, const Bundle& bundle_two);
+
+	void save(Json::Value&);
 
 private:
 	string name;

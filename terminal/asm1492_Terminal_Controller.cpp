@@ -6,6 +6,7 @@
 #include "../asm1492_Customer.h"
 #include "../asm1492_Librarian.h"
 #include "../asm1492_Date.h"
+#include "../asm1492_Transaction_Item.h"
 
 #include <sstream>
 

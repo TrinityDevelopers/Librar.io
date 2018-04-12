@@ -5,6 +5,8 @@
 #include <sstream>
 #include <map>
 
+#include "../json/asm1492_json.h"
+
 class Bundle;
 class Date;
 
@@ -44,6 +46,9 @@ public:
 
 	virtual Date get_due_date(Date check_out_date);
 	virtual double get_daily_fee();
+
+	virtual void save(Json::Value&);
+	virtual void load(Json::Value&);
 
 	static string format_to_string(Format format);
 	static Format string_to_format(string format);

@@ -19,31 +19,31 @@ bool Customer::can_check_out(Bundle* bundle) {
 }
 
 bool Customer::has_overdue_items() {
-	for(Transaction_Item* item : checked_out_items) {
-		if(item->is_overdue())
+	for(Transaction_Item item : checked_out_items) {
+		if(item.is_overdue())
 			return true;
 	}
 	return false;
 }
 
-void Customer::add_transaction_item(Transaction_Item* item) {
-	checked_out_items.insert(item);
+void Customer::add_transaction_item(Transaction_Item item) {
+	checked_out_items.push_back(item);
 }
 
 void Customer::remove_transaction_item(Media* media, Date check_in) {
-	for(Transaction_Item* item : checked_out_items) {
-		if(item->contains(media)) {
-			balance += item->calculate_fee(check_in);
-			checked_out_items.erase(item);
+	for(auto it = checked_out_items.begin(); it != checked_out_items.end(); ++it){
+		if((*it).contains(media)) {
+			balance += (*it).calculate_fee(check_in);
+			checked_out_items.erase(it);
 		}
 	}
 }
 
 void Customer::remove_transaction_item(Bundle* bundle, Date check_in) {
-	for(Transaction_Item* item : checked_out_items) {
-		if(item->contains(bundle)) {
-			balance += item->calculate_fee(check_in);
-			checked_out_items.erase(item);
+	for(auto it = checked_out_items.begin(); it != checked_out_items.end(); ++it){
+		if((*it).contains(bundle)) {
+			balance += (*it).calculate_fee(check_in);
+			checked_out_items.erase(it);
 		}
 	}
 }
@@ -62,4 +62,18 @@ string Customer::to_compact_string() {
 	stringstream stm;
 	stm << name << ", ID# " << id;
 	return stm.str();
+}
+
+void Customer::save(Json::Value& customer) {
+	customer["name"] = name;
+	customer["phone"] = phone;
+	customer["email"] = email;
+	customer["balance"] = balance;
+	Json::Value items_list;
+	for(Transaction_Item trans_item : checked_out_items) {
+		Json::Value item;
+		trans_item.save(item);
+		items_list.append(item);
+	}
+	customer["checked_out_items"] = items_list;
 }

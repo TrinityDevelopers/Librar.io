@@ -15,6 +15,9 @@ public:
 
 	string to_string() const;
 	friend ostream& operator<<(ostream& ost, const Music_Album& album_two);
+	
+	void save(Json::Value&);
+	void load(Json::Value&);
 
 private:
 	int release_year;

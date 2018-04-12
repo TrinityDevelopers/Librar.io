@@ -15,6 +15,9 @@ public:
 
 	double get_daily_fee();
 
+	void save(Json::Value&);
+	void load(Json::Value&);
+
 private:
 	int release_year;
 	string studio;

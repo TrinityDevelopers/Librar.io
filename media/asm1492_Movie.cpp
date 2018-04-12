@@ -31,3 +31,26 @@ Date Movie::get_due_date(Date check_out_date) {
 double Movie::get_daily_fee() {
 	return 1.00;
 }
+
+void Movie::save(Json::Value& movie) {
+	Media::save(movie);
+	movie["release_year"] = release_year;
+	movie["producer"] = producer;
+	movie["director"] = director;
+	Json::Value leads;
+	for(string actor : leading_actors)
+		leads.append(actor);
+	movie["leading_actors"] = leads;
+	movie["runtime"] = runtime;
+}
+
+void Movie::load(Json::Value& movie) {
+	Media::load(movie);
+	release_year = movie.get("release_year", -1).asInt();
+	producer = movie.get("producer", "unknown").asString();
+	director = movie.get("director", "unknown").asString();
+	Json::Value leads = movie["leading_actors"];
+	for(int i = 0; i < leads.size(); i++)
+		leading_actors.push_back(leads[i].asString());
+	runtime = movie.get("runtime", 0).asDouble();
+}

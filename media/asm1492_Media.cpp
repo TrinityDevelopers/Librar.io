@@ -79,6 +79,17 @@ double Media::get_daily_fee() {
 	return 0.25;
 }
 
+void Media::save(Json::Value& media) {
+	media["checked_out"] = checked_out;
+	media["format"] = format_to_string(format);
+	media["title"] = title;
+	media["genre"] = genre;
+}
+
+void Media::load(Json::Value& media) {
+	checked_out = media.get("checked_out", false).asBool();
+}
+
 string Media::format_to_string(Format format) {
 	switch(format) {
 		case Format::Unspecified:

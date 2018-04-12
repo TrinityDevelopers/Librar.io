@@ -4,6 +4,7 @@
 #include "media/asm1492_Media.h"
 #include "asm1492_Bundle.h"
 #include "asm1492_Transaction.h"
+#include "asm1492_Transaction_Item.h"
 #include "asm1492_Library.h"
 
 #include <sstream>
@@ -23,7 +24,9 @@ Transaction* Librarian::check_out(Customer* customer, vector<Media*> medias, vec
 			check_out_bundles.push_back(bundle);
 		}
 	}
-	return Library::get_instance()->create_new_transaction(check_out, this, customer, check_out_medias, check_out_bundles);
+	Transaction* ret = Library::get_instance()->create_new_transaction(check_out, this, customer);
+	ret->init(check_out_medias, check_out_bundles);
+	return ret;
 }
 
 void Librarian::check_in(Customer* customer, vector<Media*> medias, vector<Bundle*> bundles, Date check_in) {
@@ -48,4 +51,8 @@ string Librarian::to_string() {
 	stm << "Name:      " << name << endl;
 	stm << "ID Number: " << id << endl;
 	return stm.str();
+}
+
+void Librarian::save(Json::Value& librarian) {
+	librarian["name"] = name;
 }

@@ -20,3 +20,17 @@ ostream& operator<<(ostream& ost, const Book& book_two) {
 	ost << book_two.to_string();
 	return ost;
 }
+
+void Book::save(Json::Value& book) {
+	Media::save(book);
+	book["author"] = author;
+	book["copyright_year"] = copyright_year;
+	book["page_count"] = page_count;
+}
+
+void Book::load(Json::Value& book) {
+	Media::load(book);
+	author = book.get("author", "Unknown").asString();
+	copyright_year = book.get("copyright_year", -1).asInt();
+	page_count = book.get("page_count", 0).asInt();
+}

@@ -2,6 +2,7 @@
 
 #include "asm1492_Bundle.h"
 #include "media/asm1492_Media.h"
+#include "asm1492_Library.h"
 
 bool Transaction_Item::is_overdue(Date current) {
 	if(due_date < current)
@@ -37,4 +38,22 @@ bool Transaction_Item::contains(Bundle* bundle_) {
 
 bool Transaction_Item::contains(Media* media_) {
 	return this->media == media_;
+}
+
+void Transaction_Item::save(Json::Value& item) {
+	if(bundle != NULL)
+		item["bundle"] = bundle->get_name();
+	else if(media != NULL)
+		item["media"] = media->get_id_number();
+	Json::Value date;
+	due_date.save(date);
+	item["due_date"] = date;
+}
+
+Transaction_Item Transaction_Item::load(Json::Value& item) {
+	Date due_date = Date::load(item["due_date"]);
+	if(!item["bundle"].isNull())
+		return Transaction_Item(Library::get_bundle(item["bundle"].asString()), due_date);
+	else if(!item["media"].isNull())
+		return Transaction_Item(Library::get_media(item["media"].asInt()), due_date);
 }

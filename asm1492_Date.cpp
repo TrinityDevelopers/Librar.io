@@ -14,6 +14,16 @@ Date Date::get_current_date(tm* tminfo) {
 	return {tminfo->tm_year + 1900, tminfo->tm_mon + 1, tminfo->tm_mday};
 }
 
+Date Date::load(Json::Value& date) {
+	return {date.get("year", 2000).asInt(), date.get("month", 1).asInt(), date.get("day", 1).asInt()};
+}
+
+void Date::save(Json::Value& date) {
+	date["year"] = year;
+	date["month"] = month;
+	date["day"] = day;
+}
+
 void Date::add_days(int days) {
 	tm* tminfo = get_current_time();
 	tminfo->tm_year = year - 1900;

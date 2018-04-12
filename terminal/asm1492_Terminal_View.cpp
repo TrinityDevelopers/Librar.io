@@ -48,10 +48,10 @@ void Terminal_View::print_transaction(Transaction* trans) {
 	cout << trans->to_string() << endl;
 }
 
-void Terminal_View::print_items(set<Transaction_Item*> items) {
+void Terminal_View::print_items(vector<Transaction_Item> items) {
 	cout << "Currently Checked-Out Items:" << endl << endl;
-	for(Transaction_Item* item : items)
-		cout << item->to_string() << endl;
+	for(Transaction_Item item : items)
+		cout << item.to_string() << endl;
 }
 
 void Terminal_View::pay_balance() {
@@ -64,6 +64,18 @@ void Terminal_View::prompt_for(string argument) {
 
 void Terminal_View::prompt_for_date(string argument) {
 	cout << "Please input " << argument << " date using the format YYYY MM DD (or leave blank to use current date)" << endl;
+}
+
+void Terminal_View::load() {
+	cout << "Loaded Librar.io Database from file!" << endl;
+}
+
+void Terminal_View::load_fail() {
+	cout << "Failed to load Librar.io Database from file, invalid syntax!" << endl;
+}
+
+void Terminal_View::save() {
+	cout << "Saved Librar.io Database to file!" << endl;
 }
 
 void Terminal_View::pause() {

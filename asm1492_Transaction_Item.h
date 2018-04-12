@@ -1,5 +1,6 @@
 #pragma once
 
+#include "json/asm1492_json.h"
 #include "asm1492_Date.h"
 
 #include <sstream>
@@ -20,6 +21,9 @@ public:
 
 	bool contains(Bundle* bundle_);
 	bool contains(Media* media_);
+
+	void save(Json::Value&);
+	static Transaction_Item load(Json::Value&);
 
 private:
 	Bundle* bundle;

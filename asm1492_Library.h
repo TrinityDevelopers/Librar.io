@@ -3,6 +3,7 @@
 #include <map>
 #include <vector>
 
+#include "json/asm1492_json.h"
 #include "media/asm1492_Media.h"
 #include "asm1492_Date.h"
 
@@ -20,12 +21,17 @@ public:
 
 	Media* create_new_media(Media::Format format, string title, string genre);
 	Media* create_new_media(Media* media);
+	Media* create_new_media(Json::Value&);
 	Bundle* create_new_bundle(string name);
 	Bundle* create_new_bundle(string name, vector<Media*> media);
 	Bundle* create_new_bundle(string name, vector<int> media);
+	Bundle* create_new_bundle(Json::Value&);
 	Librarian* create_new_librarian(string name);
-	Customer* create_new_customer(string name, long phone, string email);
-	Transaction* create_new_transaction(Date check_out, Librarian* lib, Customer* cust, vector<Media*> media, vector<Bundle*> bundle);
+	Librarian* create_new_librarian(Json::Value&);
+	Customer* create_new_customer(string name, long phone, string email, double balance = 0);
+	Customer* create_new_customer(Json::Value&);
+	Transaction* create_new_transaction(Date check_out, Librarian* lib, Customer* cust);
+	Transaction* create_new_transaction(Json::Value&);
 
 	bool delete_media(int id);
 	bool delete_bundle(string name);
@@ -35,6 +41,9 @@ public:
 	vector<Librarian*> get_all_librarians();
 	vector<Customer*> get_all_customers();
 	vector<Transaction*> get_all_transactions();
+
+	bool load(string file);
+	void save(string file);
 
 	static string create_call_num(int id, string title);
 	static int create_media_id();

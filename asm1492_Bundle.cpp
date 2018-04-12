@@ -82,3 +82,13 @@ ostream& operator<<(ostream& ost, const Bundle& bundle_two) {
 	}
 	return ost;
 }
+
+void Bundle::save(Json::Value& bundle) {
+	bundle["name"] = name;
+	Json::Value media_list;
+	for(Media* media : medias) {
+		media_list.append(media->get_id_number());
+	}
+	bundle["medias"] = media_list;
+	bundle["checked_out"] = checked_out;
+}

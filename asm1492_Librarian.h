@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 
+#include "json/asm1492_json.h"
 #include "asm1492_Date.h"
 
 using namespace std;
@@ -22,6 +23,8 @@ public:
 
 	string to_compact_string();
 	string to_string();
+
+	void save(Json::Value&);
 
 	string get_name() { return name; };
 	int get_id() { return id; };

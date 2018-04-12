@@ -14,7 +14,10 @@ public:
 
 	string to_string() const;
 	friend ostream& operator<<(ostream& ost, const Book& book_two);
-	
+
+	void save(Json::Value&);
+	void load(Json::Value&);
+
 private:
 	string author;
 	int copyright_year;

@@ -21,6 +21,9 @@ public:
 	Date get_due_date(Date check_out_date);
 	double get_daily_fee();
 
+	void save(Json::Value&);
+	void load(Json::Value&);
+
 private:
 	int release_year;
 	string producer;

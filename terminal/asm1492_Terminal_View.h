@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include <vector>
-#include <set>
 
 using namespace std;
 
@@ -23,12 +22,15 @@ public:
 	void print_customer(Customer* cust);
 	void print_librarian(Librarian* lib);
 	void print_transaction(Transaction* trans);
-	void print_items(set<Transaction_Item*> items);
+	void print_items(vector<Transaction_Item> items);
 	void pay_balance();
 
 	void prompt_for(string argument);
 	void prompt_for_date(string argument);
 
+	void load();
+	void load_fail();
+	void save();
 	void pause();
 	void invalid();
 	void exit();
