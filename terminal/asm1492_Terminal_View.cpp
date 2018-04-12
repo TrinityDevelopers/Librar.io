@@ -12,9 +12,9 @@ void Terminal_View::print_menu(vector<Menu_Function*> functions) {
 	system("clear");
 	cout << 
 R"(
-______________________________
-|Librar.io Terminal Interface|
-‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+╔════════════════════════════╗
+║Librar.io Terminal Interface║
+╚════════════════════════════╝
 Please make a selection from the following options:
 )";
 
