@@ -31,12 +31,16 @@ Transaction* Librarian::check_out(Customer* customer, vector<Media*> medias, vec
 
 void Librarian::check_in(Customer* customer, vector<Media*> medias, vector<Bundle*> bundles, Date check_in) {
 	for(Media* media : medias) {
-		customer->remove_transaction_item(media, check_in);
-		media->check_in();
+		if(customer->is_checked_out(media)) {
+			customer->remove_transaction_item(media, check_in);
+			media->check_in();
+		}
 	}
 	for(Bundle* bundle : bundles) {
-		customer->remove_transaction_item(bundle, check_in);
-		bundle->check_in();
+		if(customer->is_checked_out(bundle)) {
+			customer->remove_transaction_item(bundle, check_in);
+			bundle->check_in();
+		}
 	}
 }
 

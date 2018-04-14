@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include "../asm1492_Date.h"
+
 using namespace std;
 
 class Terminal_View;
@@ -10,7 +12,6 @@ class Library;
 class Menu_Function;
 class Customer;
 class Librarian;
-class Date;
 
 class Terminal_Controller {
 public:
@@ -21,13 +22,13 @@ public:
 	void read_cmd(int* cmd);
 	bool execute_cmd(int cmd);
 
-	string prompt_for_string(string arg);
-	int prompt_for_int(string arg);
-	long prompt_for_long(string arg);
-	double prompt_for_double(string arg);
-	vector<string> prompt_for_string_list(string arg);
-	vector<int> prompt_for_int_list(string arg);
-	Date prompt_for_date(string arg);
+	string prompt_for_string(string arg, string def = "");
+	int prompt_for_int(string arg, int def = 0);
+	long prompt_for_long(string arg, long def = 0);
+	double prompt_for_double(string arg, double def = 0);
+	vector<string> prompt_for_string_list(string arg, vector<string> def = {});
+	vector<int> prompt_for_int_list(string arg, vector<int> def = {});
+	Date prompt_for_date(string arg, Date def = Date::get_current_date());
 
 	Library* get_library() { return library; };
 	Terminal_View* get_view() { return view; };

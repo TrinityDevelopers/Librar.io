@@ -5,7 +5,6 @@
 #include "../asm1492_Library.h"
 #include "../asm1492_Customer.h"
 #include "../asm1492_Librarian.h"
-#include "../asm1492_Date.h"
 #include "../asm1492_Transaction_Item.h"
 
 #include <sstream>
@@ -36,62 +35,62 @@ bool Terminal_Controller::execute_cmd(int cmd) {
 	return ret;
 }
 
-string Terminal_Controller::prompt_for_string(string arg) {
-	string ret;
+string Terminal_Controller::prompt_for_string(string arg, string def) {
 	view->prompt_for(arg);
-	getline(cin, ret);
-	return ret;
+	getline(cin, def);
+	return def;
 }
 
-int Terminal_Controller::prompt_for_int(string arg) {
-	int ret;
+int Terminal_Controller::prompt_for_int(string arg, int def) {
 	view->prompt_for(arg);
-	cin >> ret;
-	cin.ignore();
-	return ret;
+	string line;
+	getline(cin, line);
+	istringstream stm(line);
+	stm >> def;
+	return def;
 }
 
-long Terminal_Controller::prompt_for_long(string arg) {
-	long ret;
+long Terminal_Controller::prompt_for_long(string arg, long def) {
 	view->prompt_for(arg);
-	cin >> ret;
-	cin.ignore();
-	return ret;
+	string line;
+	getline(cin, line);
+	istringstream stm(line);
+	stm >> def;
+	return def;
 }
 
-double Terminal_Controller::prompt_for_double(string arg) {
-	double ret;
+double Terminal_Controller::prompt_for_double(string arg, double def) {
 	view->prompt_for(arg);
-	cin >> ret;
-	cin.ignore();
-	return ret;
+	string line;
+	getline(cin, line);
+	istringstream stm(line);
+	stm >> def;
+	return def;
 }
 
-vector<string> Terminal_Controller::prompt_for_string_list(string arg) {
-	vector<string> ret;
+vector<string> Terminal_Controller::prompt_for_string_list(string arg, vector<string> def) {
 	view->prompt_for(arg);
 	string line;
 	getline(cin, line);
 	istringstream stm(line);
 	string add;
 	while(getline(stm, add, ','))
-		ret.push_back(add);
-	return ret;
+		def.push_back(add);
+	return def;
 }
 
-vector<int> Terminal_Controller::prompt_for_int_list(string arg) {
-	vector<int> ret;
+vector<int> Terminal_Controller::prompt_for_int_list(string arg, vector<int> def) {
 	view->prompt_for(arg);
 	string line;
 	getline(cin, line);
 	istringstream stm(line);
 	int add;
 	while(stm >> add)
-		ret.push_back(add);
-	return ret;
+		def.push_back(add);
+	return def;
 }
 
-Date Terminal_Controller::prompt_for_date(string arg) {
+Date Terminal_Controller::prompt_for_date(string arg, Date def) {
 	int year, month, day;
 	view->prompt_for_date(arg);
 	string line;
@@ -99,7 +98,7 @@ Date Terminal_Controller::prompt_for_date(string arg) {
 	istringstream stm(line);
 	if(stm >> year >> month >> day)
 		return {year, month, day};
-	return Date::get_current_date();
+	return def;
 }
 
 void Terminal_Controller::init() {

@@ -50,6 +50,21 @@ void Customer::remove_transaction_item(Bundle* bundle, Date check_in) {
 	}
 }
 
+
+bool Customer::is_checked_out(Media* media) {
+	for(auto it = checked_out_items.begin(); it != checked_out_items.end(); it++)
+		if((*it).contains(media))
+			return true;
+	return false;
+}
+
+bool Customer::is_checked_out(Bundle* bundle) {
+	for(auto it = checked_out_items.begin(); it != checked_out_items.end(); it++)
+		if((*it).contains(bundle))
+			return true;
+	return false;
+}
+
 string Customer::to_string() {
 	stringstream stm;
 	stm << "Name:         " << name << endl;

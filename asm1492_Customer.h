@@ -24,6 +24,9 @@ public:
 	void add_transaction_item(Transaction_Item item);
 	void remove_transaction_item(Media* media, Date check_in);
 	void remove_transaction_item(Bundle* bundle, Date check_in);
+	bool is_checked_out(Media* media);
+	bool is_checked_out(Bundle* bundle);
+
 
 	void pay_balance() { balance = 0.0; };
 
