@@ -18,9 +18,9 @@ public:
 		Unspecified,
 		Book,
 		Movie,
-		Video_Game,
 		Music_Album,
-		Television_Show_Season
+		Television_Show_Season,
+		Video_Game
 	};
 
 	Media(Format form, string title_, string genre_);

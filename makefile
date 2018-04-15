@@ -1,15 +1,18 @@
 CXX := g++
-CXXFLAGS := -std=c++11 -g
+CXXFLAGS := -std=c++11 -g -pthread
+GTKFLAGS := `pkg-config gtkmm-3.0 --cflags --libs`
 TARGET := Librario
 
-SRCS := $(wildcard *.cpp media/*.cpp terminal/*.cpp)
+SRCS := $(wildcard *.cpp media/*.cpp terminal/*.cpp gui/*.cpp)
 OBJS := $(patsubst %.cpp,%.o,$(SRCS))
 
 all: $(TARGET)
 	./$(TARGET)
 $(TARGET): $(OBJS)
-	$(CXX) -o $@ $^
+	$(CXX) -o $@ $^ $(GTKFLAGS)
 %.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@ $(GTKFLAGS)
 clean:
-	rm -rf $(TARGET) *.o media/*.o terminal/*.o
+	rm -rf $(TARGET) *.o media/*.o terminal/*.o gui/*.o
+clean_gui:
+	rm -rf gui/*.o
