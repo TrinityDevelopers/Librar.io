@@ -25,6 +25,7 @@ Main_Window::Main_Window()
 void Main_Window::add_media_button_clicked() {
 	Add_Media_Dialog dialog(*this);
 	dialog.run();
+	dialog.create_media();
 }
 
 void Main_Window::add_bundle_button_clicked() {

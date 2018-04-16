@@ -20,15 +20,28 @@ List_Entry::List_Entry(const Glib::ustring& hint)
 }
 
 void List_Entry::clear() {
-	for(Gtk::Entry* entry : entries) {
+	for(Clearable_Entry* entry : entries) 
 		remove(*entry);
-	}
 	entries.clear();
 	add_new_entry();
 }
 
+vector<string> List_Entry::get_string_list() {
+	vector<string> ret;
+	for(Clearable_Entry* entry : entries)
+		ret.push_back(entry->get_text());
+	return ret;
+}
+
+vector<int> List_Entry::get_int_list() {
+	vector<int> ret;
+	for(Clearable_Entry* entry : entries)
+		ret.push_back(entry->get_int());
+	return ret;
+}
+
 void List_Entry::add_new_entry() {
-	Gtk::Entry* entry = new Gtk::Entry();
+	Clearable_Entry* entry = new Clearable_Entry();
 	entry->set_placeholder_text(label_hint);
 	remove(controls);
 	pack_start(*entry);

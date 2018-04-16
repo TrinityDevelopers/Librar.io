@@ -35,7 +35,7 @@ private:
 		vector<Input_Frame*> entries;
 	};
 
-	void media_format_changed();
+	void format_changed();
 
 	Input_Group book;
 	Input_Group movie;
@@ -43,7 +43,7 @@ private:
 	Input_Group television_show_season;
 	Input_Group video_game;
 
-	Gtk::ComboBoxText media_format;
+	Gtk::ComboBoxText format;
 	Clearable_Entry title;
 	Clearable_Entry genre;
 	Clearable_Entry author;

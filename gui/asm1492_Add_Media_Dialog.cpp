@@ -1,20 +1,26 @@
 #include "asm1492_Add_Media_Dialog.h"
 
 #include "../media/asm1492_Media.h"
+#include "../media/asm1492_Book.h"
+#include "../media/asm1492_Movie.h"
+#include "../media/asm1492_Music_Album.h"
+#include "../media/asm1492_Television_Show_Season.h"
+#include "../media/asm1492_Video_Game.h"
+#include "../asm1492_Library.h"
 
 Add_Media_Dialog::Add_Media_Dialog(Gtk::Window& parent) 
 	: Gtk::Dialog("Add Media", parent), leads("Actor Name"), tracks("Track Name"), directors("Director Name") {
 	
 	set_resizable(false);
 
-	for(int format = 0; format < 6; format++)
-		media_format.append(Media::format_to_string((Media::Format)format));
-	media_format.set_active(0);
+	for(int form = 0; form < 6; form++)
+		format.append(Media::format_to_string((Media::Format)form));
+	format.set_active(0);
 
-	Input_Frame* frame = new Input_Frame("Media Format", &media_format);
+	Input_Frame* frame = new Input_Frame("Media Format", &format);
 	get_content_area()->pack_start(*frame);
 	
-	media_format.signal_changed().connect(sigc::mem_fun(*this, &Add_Media_Dialog::media_format_changed));
+	format.signal_changed().connect(sigc::mem_fun(*this, &Add_Media_Dialog::format_changed));
 	frame->show_all();
 
 	title.set_placeholder_text("Title");
@@ -52,6 +58,7 @@ Add_Media_Dialog::Add_Media_Dialog(Gtk::Window& parent)
 	movie.add_entry(runtime_frame, get_content_area());
 	movie.add_entry(leads_frame, get_content_area());
 
+	music_album.add_entry(release_frame);
 	music_album.add_entry(new Input_Frame("Artist", &artist), get_content_area());
 	music_album.add_entry(new Input_Frame("Album Tracks", &tracks), get_content_area());
 
@@ -65,7 +72,7 @@ Add_Media_Dialog::Add_Media_Dialog(Gtk::Window& parent)
 	video_game.add_entry(release_frame);
 	video_game.add_entry(new Input_Frame("Studio", &studio), get_content_area());
 
-	media_format_changed();
+	format_changed();
 
 	add_button("_Cancel", 0);
 	add_button("_OK", 1);
@@ -73,13 +80,13 @@ Add_Media_Dialog::Add_Media_Dialog(Gtk::Window& parent)
 	get_action_area()->set_layout(Gtk::BUTTONBOX_EXPAND);
 }
 
-void Add_Media_Dialog::media_format_changed() {
+void Add_Media_Dialog::format_changed() {
 	book.hide();
 	movie.hide();
 	music_album.hide();
 	television_show_season.hide();
 	video_game.hide();
-	switch((Media::Format) media_format.get_active_row_number()) {
+	switch((Media::Format) format.get_active_row_number()) {
 		case Media::Format::Unspecified:
 			break;
 		case Media::Format::Book: {
@@ -102,7 +109,40 @@ void Add_Media_Dialog::media_format_changed() {
 			video_game.clear_and_show();
 			break;
 		}
-		default:
-			break;
 	}
+}
+
+Media* Add_Media_Dialog::create_media() {
+	Media* media;
+	Media::Format media_format = (Media::Format) format.get_active_row_number();
+	string media_title = title.get_text();
+	string media_genre = genre.get_text();
+
+	switch(media_format) {
+		case Media::Format::Unspecified: {
+			media = Library::get_instance()->create_new_media(media_format, media_title, media_genre);
+			break;
+		}
+		case Media::Format::Book: {
+			media = Library::get_instance()->create_new_media(new Book(media_title, media_genre, author.get_text(), copyright.get_int(), pages.get_int()));
+			break;
+		}
+		case Media::Format::Movie: {
+			media = Library::get_instance()->create_new_media(new Movie(media_title, media_genre, producer.get_text(), director.get_text(), release.get_int(), leads.get_string_list(), runtime.get_double()));
+			break;
+		}
+		case Media::Format::Music_Album: {
+			media = Library::get_instance()->create_new_media(new Music_Album(media_title, media_genre, release.get_int(), artist.get_text(), tracks.get_string_list()));
+			break;
+		}
+		case Media::Format::Television_Show_Season: {
+			media = Library::get_instance()->create_new_media(new Television_Show_Season(media_title, media_genre, producer.get_text(), directors.get_string_list(), leads.get_string_list(), runtime.get_double(), season.get_int(), release.get_int()));
+			break;
+		}
+		case Media::Format::Video_Game: {
+			media = Library::get_instance()->create_new_media(new Video_Game(media_title, media_genre, release.get_int(), studio.get_text()));
+			break;
+		}
+	}
+	return media;
 }
