@@ -5,8 +5,8 @@
 			"checked_out" : true,
 			"medias" : 
 			[
-				1003,
-				1002
+				1002,
+				1003
 			],
 			"name" : "Fallout Set"
 		}
@@ -160,6 +160,15 @@
 			"release_year" : 2008,
 			"runtime" : 120.0,
 			"title" : "Iron Man"
+		},
+		{
+			"author" : "Jules Verne",
+			"checked_out" : false,
+			"copyright_year" : 1980,
+			"format" : "Book",
+			"genre" : "Adventure",
+			"page_count" : 847,
+			"title" : "Journey to the Center of the Earth"
 		}
 	],
 	"transactions" : 

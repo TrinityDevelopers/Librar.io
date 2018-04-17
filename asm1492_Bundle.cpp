@@ -92,3 +92,12 @@ void Bundle::save(Json::Value& bundle) {
 	bundle["medias"] = media_list;
 	bundle["checked_out"] = checked_out;
 }
+
+string Bundle::get_medias_string() {
+	stringstream stm;
+	for(auto it = medias.begin(); it != medias.end(); it++) {
+		if(it != medias.begin()) stm << ", ";
+		stm << (*it)->get_id_number();
+	}
+	return stm.str();
+}

@@ -25,6 +25,7 @@ public:
 	string get_name() { return name; };
 	set<Media*> get_medias() { return medias; };
 	int get_media_count() { return medias.size(); };
+	string get_medias_string();
 
 	string to_compact_string();
 
