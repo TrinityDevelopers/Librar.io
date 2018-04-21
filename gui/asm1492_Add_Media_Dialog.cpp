@@ -17,19 +17,19 @@ Add_Media_Dialog::Add_Media_Dialog(Gtk::Window& parent)
 		format.append(Media::format_to_string((Media::Format)form));
 	format.set_active(0);
 
-	Input_Frame* frame = new Input_Frame("Media Format", &format);
+	Input_Frame* frame = Gtk::manage(new Input_Frame("Media Format", &format));
 	get_content_area()->pack_start(*frame);
 	
 	format.signal_changed().connect(sigc::mem_fun(*this, &Add_Media_Dialog::format_changed));
 	frame->show_all();
 
 	title.set_placeholder_text("Title");
-	frame = new Input_Frame("Media Title", &title);
+	frame = Gtk::manage(new Input_Frame("Media Title", &title));
 	get_content_area()->pack_start(*frame);
 	frame->show_all();
 
 	genre.set_placeholder_text("Genre");
-	frame = new Input_Frame("Media Genre", &genre);
+	frame = Gtk::manage(new Input_Frame("Media Genre", &genre));
 	get_content_area()->pack_start(*frame);
 	frame->show_all();
 
@@ -43,34 +43,34 @@ Add_Media_Dialog::Add_Media_Dialog(Gtk::Window& parent)
 	artist.set_placeholder_text("Artist");
 	season.set_placeholder_text("Season");
 	studio.set_placeholder_text("Studio");
-	Input_Frame* producer_frame = new Input_Frame("Producer", &producer);
-	Input_Frame* release_frame = new Input_Frame("Release Year", &release);
-	Input_Frame* runtime_frame = new Input_Frame("Runtime (minutes)", &runtime);
-	Input_Frame* leads_frame = new Input_Frame("Leading Actors", &leads);
+	Input_Frame* producer_frame = Gtk::manage(new Input_Frame("Producer", &producer));
+	Input_Frame* release_frame = Gtk::manage(new Input_Frame("Release Year", &release));
+	Input_Frame* runtime_frame = Gtk::manage(new Input_Frame("Runtime (minutes)", &runtime));
+	Input_Frame* leads_frame = Gtk::manage(new Input_Frame("Leading Actors", &leads));
 
-	book.add_entry(new Input_Frame("Author", &author), get_content_area());
-	book.add_entry(new Input_Frame("Copyright Date", &copyright), get_content_area());
-	book.add_entry(new Input_Frame("Page Count", &pages), get_content_area());
+	book.add_entry(Gtk::manage(new Input_Frame("Author", &author)), get_content_area());
+	book.add_entry(Gtk::manage(new Input_Frame("Copyright Date", &copyright)), get_content_area());
+	book.add_entry(Gtk::manage(new Input_Frame("Page Count", &pages)), get_content_area());
 
 	movie.add_entry(producer_frame, get_content_area());
-	movie.add_entry(new Input_Frame("Director", &director), get_content_area());
+	movie.add_entry(Gtk::manage(new Input_Frame("Director", &director)), get_content_area());
 	movie.add_entry(release_frame, get_content_area());
 	movie.add_entry(runtime_frame, get_content_area());
 	movie.add_entry(leads_frame, get_content_area());
 
 	music_album.add_entry(release_frame);
-	music_album.add_entry(new Input_Frame("Artist", &artist), get_content_area());
-	music_album.add_entry(new Input_Frame("Album Tracks", &tracks), get_content_area());
+	music_album.add_entry(Gtk::manage(new Input_Frame("Artist", &artist)), get_content_area());
+	music_album.add_entry(Gtk::manage(new Input_Frame("Album Tracks", &tracks)), get_content_area());
 
 	television_show_season.add_entry(producer_frame);
 	television_show_season.add_entry(runtime_frame);
-	television_show_season.add_entry(new Input_Frame("Season Number", &season), get_content_area());
+	television_show_season.add_entry(Gtk::manage(new Input_Frame("Season Number", &season)), get_content_area());
 	television_show_season.add_entry(release_frame);
-	television_show_season.add_entry(new Input_Frame("Directors", &directors), get_content_area());
+	television_show_season.add_entry(Gtk::manage(new Input_Frame("Directors", &directors)), get_content_area());
 	television_show_season.add_entry(leads_frame);
 
 	video_game.add_entry(release_frame);
-	video_game.add_entry(new Input_Frame("Studio", &studio), get_content_area());
+	video_game.add_entry(Gtk::manage(new Input_Frame("Studio", &studio)), get_content_area());
 
 	format_changed();
 

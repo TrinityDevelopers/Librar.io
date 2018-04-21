@@ -41,7 +41,7 @@ vector<int> List_Entry::get_int_list() {
 }
 
 void List_Entry::add_new_entry() {
-	Clearable_Entry* entry = new Clearable_Entry();
+	Clearable_Entry* entry = Gtk::manage(new Clearable_Entry());
 	entry->set_placeholder_text(label_hint);
 	remove(controls);
 	pack_start(*entry);

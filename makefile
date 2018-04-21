@@ -1,7 +1,7 @@
 CXX := g++
 CXXFLAGS := -std=c++11 -g -pthread
 GTKFLAGS := `pkg-config gtkmm-3.0 --cflags --libs`
-TARGET := Librario
+TARGET := Librar.io
 
 SRCS := $(wildcard *.cpp media/*.cpp terminal/*.cpp gui/*.cpp)
 OBJS := $(patsubst %.cpp,%.o,$(SRCS))

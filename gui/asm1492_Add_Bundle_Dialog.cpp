@@ -9,7 +9,7 @@ Add_Bundle_Dialog::Add_Bundle_Dialog(Gtk::Window& parent)
 	set_resizable(false);
 
 	name.set_placeholder_text("Name");
-	Input_Frame* frame = new Input_Frame("Bundle Name", &name);
+	Input_Frame* frame = Gtk::manage(new Input_Frame("Bundle Name", &name));
 	get_content_area()->pack_start(*frame);
 
 	Gtk::Box* box = Gtk::manage(new Gtk::Box());

@@ -12,7 +12,7 @@ Browse_Window::Browse_Window(bool select) : vbox(Gtk::ORIENTATION_VERTICAL), sel
 	if(selectable)
 		medias.set_selection_mode(Gtk::SELECTION_MULTIPLE);
 
-	set_size_request(400, 400);
+	set_size_request(450, 450);
 	show_all_children();
 }
 

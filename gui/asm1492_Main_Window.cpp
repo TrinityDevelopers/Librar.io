@@ -3,10 +3,16 @@
 #include "asm1492_Add_Media_Dialog.h"
 #include "asm1492_Add_Bundle_Dialog.h"
 #include "asm1492_Browse_Catalog_Dialog.h"
+#include "asm1492_Create_Librarian_Dialog.h"
+#include "asm1492_Create_Customer_Dialog.h"
 
 Main_Window::Main_Window()
-	: add_media_button("Add Media"), add_bundle_button("Add Bundle"), browse_catalog_button("Browse Catalog") {
+	: add_media_button("Add Media"), add_bundle_button("Add Bundle"), browse_catalog_button("Browse Catalog"), 
+	  create_librarian_button("Add Librarian"), create_customer_button("Add Customer") {
 	
+	set_default_size(900, 200);
+	set_icon_name("accessories-dictionary");
+
 	add(button_box);
 
 	button_box.set_layout(Gtk::BUTTONBOX_CENTER);
@@ -20,6 +26,12 @@ Main_Window::Main_Window()
 
 	button_box.pack_start(browse_catalog_button);
 	browse_catalog_button.signal_clicked().connect(sigc::mem_fun(*this, &Main_Window::browse_catalog_button_clicked));
+
+	button_box.pack_start(create_librarian_button);
+	create_librarian_button.signal_clicked().connect(sigc::mem_fun(*this, &Main_Window::create_librarian_button_clicked));
+
+	button_box.pack_start(create_customer_button);
+	create_customer_button.signal_clicked().connect(sigc::mem_fun(*this, &Main_Window::create_customer_button_clicked));
 
 	show_all_children();
 }
@@ -39,4 +51,16 @@ void Main_Window::add_bundle_button_clicked() {
 void Main_Window::browse_catalog_button_clicked() {
 	Browse_Catalog_Dialog dialog(*this);
 	dialog.run();
+}
+
+void Main_Window::create_librarian_button_clicked() {
+	Create_Librarian_Dialog dialog(*this);
+	if(dialog.run())
+		dialog.create_librarian();
+}
+
+void Main_Window::create_customer_button_clicked() {
+	Create_Customer_Dialog dialog(*this);
+	if(dialog.run())
+		dialog.create_customer();
 }

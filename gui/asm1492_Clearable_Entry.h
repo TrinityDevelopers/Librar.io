@@ -14,19 +14,19 @@ public:
 		set_text("");
 	}
 	int get_int() {
-		int ret;
+		int ret = 0;
 		istringstream stm(get_text());
 		stm >> ret;
 		return ret;
 	}
 	long get_long() {
-		long ret;
+		long ret = 0;
 		istringstream stm(get_text());
 		stm >> ret;
 		return ret;
 	}
 	double get_double() {
-		double ret;
+		double ret = 0;
 		istringstream stm(get_text());
 		stm >> ret;
 		return ret;
