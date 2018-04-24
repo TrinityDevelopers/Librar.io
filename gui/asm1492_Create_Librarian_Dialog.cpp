@@ -7,6 +7,7 @@ Create_Librarian_Dialog::Create_Librarian_Dialog(Gtk::Window& parent)
 	: Gtk::Dialog("Add Librarian", parent) {
 	
 	set_resizable(false);
+	set_size_request(250);
 
 	name.set_placeholder_text("Name");
 	name.set_activates_default();

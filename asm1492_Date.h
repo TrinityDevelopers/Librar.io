@@ -12,6 +12,7 @@ class Date {
 public:
 	Date(int y, int m, int d) : year(y), month(m), day(d) {};
 	
+	void set_date(int y, int m, int d) { year = y; month = m; day = d; };
 	void add_days(int days);
 	int days_late(Date check_in);
 	bool operator<(const Date& date_two) const;

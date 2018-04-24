@@ -5,10 +5,14 @@
 #include "asm1492_Browse_Catalog_Dialog.h"
 #include "asm1492_Create_Librarian_Dialog.h"
 #include "asm1492_Create_Customer_Dialog.h"
+#include "asm1492_Check_Out_Dialog.h"
+#include "asm1492_Check_In_Dialog.h"
+#include "asm1492_Transaction_Dialog.h"
 
 Main_Window::Main_Window()
 	: add_media_button("Add Media"), add_bundle_button("Add Bundle"), browse_catalog_button("Browse Catalog"), 
-	  create_librarian_button("Add Librarian"), create_customer_button("Add Customer") {
+	  create_librarian_button("Add Librarian"), create_customer_button("Add Customer"), check_out_button("Check Out"),
+	  check_in_button("Check In") {
 	
 	set_default_size(900, 200);
 	set_icon_name("accessories-dictionary");
@@ -32,6 +36,12 @@ Main_Window::Main_Window()
 
 	button_box.pack_start(create_customer_button);
 	create_customer_button.signal_clicked().connect(sigc::mem_fun(*this, &Main_Window::create_customer_button_clicked));
+
+	button_box.pack_start(check_out_button);
+	check_out_button.signal_clicked().connect(sigc::mem_fun(*this, &Main_Window::check_out_button_clicked));
+
+	button_box.pack_start(check_in_button);
+	check_in_button.signal_clicked().connect(sigc::mem_fun(*this, &Main_Window::check_in_button_clicked));
 
 	show_all_children();
 }
@@ -63,4 +73,18 @@ void Main_Window::create_customer_button_clicked() {
 	Create_Customer_Dialog dialog(*this);
 	if(dialog.run())
 		dialog.create_customer();
+}
+
+void Main_Window::check_out_button_clicked() {
+	Check_Out_Dialog dialog(*this);
+	if(dialog.run()) {
+		Transaction_Dialog trans_dialog(*this, dialog.create_transaction());
+		trans_dialog.run();
+	}
+}
+
+void Main_Window::check_in_button_clicked() {
+	Check_In_Dialog dialog(*this);
+	if(dialog.run())
+		dialog.check_in();
 }

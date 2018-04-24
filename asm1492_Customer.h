@@ -4,10 +4,10 @@
 #include <set>
 
 #include "json/asm1492_json.h"
+#include "asm1492_Transaction_Item.h"
 
 using namespace std;
 
-class Transaction_Item;
 class Media;
 class Bundle;
 class Date;

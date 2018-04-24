@@ -7,6 +7,7 @@ Create_Customer_Dialog::Create_Customer_Dialog(Gtk::Window& parent)
 	: Gtk::Dialog("Add Customer", parent) {
 	
 	set_resizable(false);
+	set_size_request(250);
 
 	name.set_placeholder_text("Name");
 	name.set_activates_default();

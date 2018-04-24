@@ -2,7 +2,7 @@
 
 
 List_Entry::List_Entry(const Glib::ustring& hint)
-	: Box(Gtk::ORIENTATION_VERTICAL), label_hint(hint), new_entry("New " + hint), delete_entry("Delete " + hint) {
+	: Gtk::Box(Gtk::ORIENTATION_VERTICAL), label_hint(hint), new_entry("New " + hint), delete_entry("Delete " + hint) {
 	
 	pack_start(controls);
 

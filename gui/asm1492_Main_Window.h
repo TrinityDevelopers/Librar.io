@@ -12,6 +12,8 @@ protected:
 	void browse_catalog_button_clicked();
 	void create_librarian_button_clicked();
 	void create_customer_button_clicked();
+	void check_out_button_clicked();
+	void check_in_button_clicked();
 
 	Gtk::ButtonBox button_box;
 	Gtk::Button add_media_button;
@@ -19,4 +21,6 @@ protected:
 	Gtk::Button browse_catalog_button;
 	Gtk::Button create_librarian_button;
 	Gtk::Button create_customer_button;
+	Gtk::Button check_out_button;
+	Gtk::Button check_in_button;
 };

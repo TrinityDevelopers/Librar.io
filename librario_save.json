@@ -2,7 +2,7 @@
 	"bundles" : 
 	[
 		{
-			"checked_out" : true,
+			"checked_out" : false,
 			"medias" : 
 			[
 				1002,
@@ -15,45 +15,7 @@
 	[
 		{
 			"balance" : 0.0,
-			"checked_out_items" : 
-			[
-				{
-					"due_date" : 
-					{
-						"day" : 4,
-						"month" : 5,
-						"year" : 2018
-					},
-					"media" : 1000
-				},
-				{
-					"due_date" : 
-					{
-						"day" : 4,
-						"month" : 5,
-						"year" : 2018
-					},
-					"media" : 1004
-				},
-				{
-					"due_date" : 
-					{
-						"day" : 4,
-						"month" : 5,
-						"year" : 2018
-					},
-					"media" : 1005
-				},
-				{
-					"bundle" : "Fallout Set",
-					"due_date" : 
-					{
-						"day" : 4,
-						"month" : 5,
-						"year" : 2018
-					}
-				}
-			],
+			"checked_out_items" : null,
 			"email" : "andrew.miller2@mavs.uta.edu",
 			"name" : "Andrew Miller",
 			"phone" : 8178933341
@@ -76,7 +38,7 @@
 	[
 		{
 			"author" : "George Willis",
-			"checked_out" : true,
+			"checked_out" : false,
 			"copyright_year" : 1977,
 			"format" : "Book",
 			"genre" : "Education",
@@ -99,7 +61,7 @@
 			"title" : "Sound of Music"
 		},
 		{
-			"checked_out" : true,
+			"checked_out" : false,
 			"format" : "Video Game",
 			"genre" : "Adventure",
 			"release_year" : 2015,
@@ -107,7 +69,7 @@
 			"title" : "Fallout 4"
 		},
 		{
-			"checked_out" : true,
+			"checked_out" : false,
 			"format" : "Video Game",
 			"genre" : "Adventure",
 			"release_year" : 2008,
@@ -116,7 +78,7 @@
 		},
 		{
 			"artist" : "Jeannie Miller",
-			"checked_out" : true,
+			"checked_out" : false,
 			"format" : "Music Album",
 			"genre" : "Pop",
 			"release_year" : 2018,
@@ -128,7 +90,7 @@
 			]
 		},
 		{
-			"checked_out" : true,
+			"checked_out" : false,
 			"format" : "Unspecified",
 			"genre" : "Education",
 			"title" : "Reference Globe"
@@ -261,6 +223,188 @@
 						"month" : 5,
 						"year" : 2018
 					}
+				}
+			],
+			"customer" : 1000000,
+			"librarian" : 1000000
+		},
+		{
+			"check_out_date" : 
+			{
+				"day" : 22,
+				"month" : 4,
+				"year" : 2018
+			},
+			"checked_out_items" : 
+			[
+				{
+					"due_date" : 
+					{
+						"day" : 29,
+						"month" : 4,
+						"year" : 2018
+					},
+					"media" : 1001
+				},
+				{
+					"due_date" : 
+					{
+						"day" : 29,
+						"month" : 4,
+						"year" : 2018
+					},
+					"media" : 1007
+				}
+			],
+			"customer" : 1000000,
+			"librarian" : 1000000
+		},
+		{
+			"check_out_date" : 
+			{
+				"day" : 22,
+				"month" : 4,
+				"year" : 2018
+			},
+			"checked_out_items" : 
+			[
+				{
+					"bundle" : "Fallout Set",
+					"due_date" : 
+					{
+						"day" : 13,
+						"month" : 5,
+						"year" : 2018
+					}
+				}
+			],
+			"customer" : 1000000,
+			"librarian" : 1000000
+		},
+		{
+			"check_out_date" : 
+			{
+				"day" : 23,
+				"month" : 4,
+				"year" : 2018
+			},
+			"checked_out_items" : 
+			[
+				{
+					"due_date" : 
+					{
+						"day" : 14,
+						"month" : 5,
+						"year" : 2018
+					},
+					"media" : 1000
+				},
+				{
+					"due_date" : 
+					{
+						"day" : 30,
+						"month" : 4,
+						"year" : 2018
+					},
+					"media" : 1001
+				},
+				{
+					"due_date" : 
+					{
+						"day" : 14,
+						"month" : 5,
+						"year" : 2018
+					},
+					"media" : 1004
+				},
+				{
+					"due_date" : 
+					{
+						"day" : 14,
+						"month" : 5,
+						"year" : 2018
+					},
+					"media" : 1005
+				},
+				{
+					"due_date" : 
+					{
+						"day" : 30,
+						"month" : 4,
+						"year" : 2018
+					},
+					"media" : 1006
+				},
+				{
+					"due_date" : 
+					{
+						"day" : 30,
+						"month" : 4,
+						"year" : 2018
+					},
+					"media" : 1007
+				},
+				{
+					"due_date" : 
+					{
+						"day" : 14,
+						"month" : 5,
+						"year" : 2018
+					},
+					"media" : 1008
+				},
+				{
+					"bundle" : "Fallout Set",
+					"due_date" : 
+					{
+						"day" : 14,
+						"month" : 5,
+						"year" : 2018
+					}
+				}
+			],
+			"customer" : 1000000,
+			"librarian" : 1000000
+		},
+		{
+			"check_out_date" : 
+			{
+				"day" : 23,
+				"month" : 4,
+				"year" : 2018
+			},
+			"checked_out_items" : 
+			[
+				{
+					"bundle" : "Fallout Set",
+					"due_date" : 
+					{
+						"day" : 14,
+						"month" : 5,
+						"year" : 2018
+					}
+				}
+			],
+			"customer" : 1000001,
+			"librarian" : 1000000
+		},
+		{
+			"check_out_date" : 
+			{
+				"day" : 23,
+				"month" : 4,
+				"year" : 2018
+			},
+			"checked_out_items" : 
+			[
+				{
+					"due_date" : 
+					{
+						"day" : 14,
+						"month" : 5,
+						"year" : 2018
+					},
+					"media" : 1002
 				}
 			],
 			"customer" : 1000000,

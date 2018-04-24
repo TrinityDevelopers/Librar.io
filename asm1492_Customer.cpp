@@ -2,7 +2,6 @@
 
 #include "media/asm1492_Media.h"
 #include "asm1492_Bundle.h"
-#include "asm1492_Transaction_Item.h"
 
 #include <iomanip>
 

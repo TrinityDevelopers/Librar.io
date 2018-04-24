@@ -25,6 +25,12 @@ public:
 
 	void save(Json::Value&);
 
+	int get_transaction_number() { return transaction_number; };
+	Date get_check_out_date() { return check_out_date; };
+	Librarian* get_librarian() { return librarian; };
+	Customer* get_customer() { return customer; };
+	vector<Transaction_Item> get_items() { return items; };
+
 private:
 	int transaction_number;
 	Date check_out_date;
