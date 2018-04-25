@@ -1,10 +1,10 @@
 #include "asm1492_User_Select.h"
 
-#include "asm1492_Create_Customer_Dialog.h"
-#include "asm1492_Create_Librarian_Dialog.h"
-#include "../asm1492_Library.h"
-#include "../asm1492_Customer.h"
-#include "../asm1492_Librarian.h"
+#include "../dialogs/asm1492_Create_Customer_Dialog.h"
+#include "../dialogs/asm1492_Create_Librarian_Dialog.h"
+#include "../../asm1492_Library.h"
+#include "../../asm1492_Customer.h"
+#include "../../asm1492_Librarian.h"
 
 
 Customer_Select::Customer_Select(Gtk::Window& parent)

@@ -1,11 +1,11 @@
 #include "asm1492_Check_In_Dialog.h"
 
-#include "asm1492_Media_Row.h"
-#include "asm1492_Bundle_Row.h"
-#include "asm1492_Input_Frame.h"
-#include "../asm1492_Library.h"
-#include "../asm1492_Librarian.h"
-#include "../asm1492_Customer.h"
+#include "../elements/asm1492_Media_Row.h"
+#include "../elements/asm1492_Bundle_Row.h"
+#include "../elements/asm1492_Input_Frame.h"
+#include "../../asm1492_Library.h"
+#include "../../asm1492_Librarian.h"
+#include "../../asm1492_Customer.h"
 
 Check_In_Dialog::Check_In_Dialog(Gtk::Window& parent) 
 	: Gtk::Dialog("Check In", parent), customer(*this), librarian(*this), items(true) {

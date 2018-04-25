@@ -2,7 +2,7 @@
 
 #include "asm1492_Catalog_Row.h"
 
-#include "../asm1492_Bundle.h"
+#include "../../asm1492_Bundle.h"
 
 class Bundle_Row : public Catalog_Row {
 public:

@@ -1,6 +1,5 @@
 #include "asm1492_Catalog_Row.h"
 
-
 Catalog_Row::Catalog_Row(Type type_) : type(type_) {
 	title.set_halign(Gtk::ALIGN_START);
 	availability.set_halign(Gtk::ALIGN_START);

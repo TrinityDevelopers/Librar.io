@@ -3,8 +3,8 @@
 #include <gtkmm.h>
 #include <vector>
 
-#include "../media/asm1492_Media.h"
-#include "../asm1492_Bundle.h"
+#include "../../media/asm1492_Media.h"
+#include "../../asm1492_Bundle.h"
 
 using namespace std;
 

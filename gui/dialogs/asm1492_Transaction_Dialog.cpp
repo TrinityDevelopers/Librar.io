@@ -1,12 +1,12 @@
 #include "asm1492_Transaction_Dialog.h"
 
-#include "asm1492_Media_Row.h"
-#include "asm1492_Bundle_Row.h"
-#include "asm1492_Input_Frame.h"
-#include "../asm1492_Transaction.h"
-#include "../asm1492_Date.h"
-#include "../asm1492_Librarian.h"
-#include "../asm1492_Customer.h"
+#include "../elements/asm1492_Media_Row.h"
+#include "../elements/asm1492_Bundle_Row.h"
+#include "../elements/asm1492_Input_Frame.h"
+#include "../../asm1492_Transaction.h"
+#include "../../asm1492_Date.h"
+#include "../../asm1492_Librarian.h"
+#include "../../asm1492_Customer.h"
 
 Transaction_Dialog::Transaction_Dialog(Gtk::Window& parent, Transaction* trans)
 	: Gtk::Dialog("Check Out Receipt", parent) {

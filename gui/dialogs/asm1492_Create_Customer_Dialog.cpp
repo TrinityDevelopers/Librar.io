@@ -1,7 +1,7 @@
 #include "asm1492_Create_Customer_Dialog.h"
 
-#include "asm1492_Media_Row.h"
-#include "../asm1492_Library.h"
+#include "../elements/asm1492_Media_Row.h"
+#include "../../asm1492_Library.h"
 
 Create_Customer_Dialog::Create_Customer_Dialog(Gtk::Window& parent)
 	: Gtk::Dialog("Add Customer", parent) {

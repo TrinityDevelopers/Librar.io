@@ -1,12 +1,12 @@
 #include "asm1492_Add_Media_Dialog.h"
 
-#include "../media/asm1492_Media.h"
-#include "../media/asm1492_Book.h"
-#include "../media/asm1492_Movie.h"
-#include "../media/asm1492_Music_Album.h"
-#include "../media/asm1492_Television_Show_Season.h"
-#include "../media/asm1492_Video_Game.h"
-#include "../asm1492_Library.h"
+#include "../../media/asm1492_Media.h"
+#include "../../media/asm1492_Book.h"
+#include "../../media/asm1492_Movie.h"
+#include "../../media/asm1492_Music_Album.h"
+#include "../../media/asm1492_Television_Show_Season.h"
+#include "../../media/asm1492_Video_Game.h"
+#include "../../asm1492_Library.h"
 
 Add_Media_Dialog::Add_Media_Dialog(Gtk::Window& parent) 
 	: Gtk::Dialog("Add Media", parent), leads("Actor Name"), tracks("Track Name"), directors("Director Name") {

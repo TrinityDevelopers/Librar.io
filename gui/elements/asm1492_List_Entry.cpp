@@ -1,6 +1,5 @@
 #include "asm1492_List_Entry.h"
 
-
 List_Entry::List_Entry(const Glib::ustring& hint)
 	: Gtk::Box(Gtk::ORIENTATION_VERTICAL), label_hint(hint), new_entry("New " + hint), delete_entry("Delete " + hint) {
 	

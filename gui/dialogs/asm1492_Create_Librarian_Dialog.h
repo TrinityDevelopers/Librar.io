@@ -2,7 +2,7 @@
 
 #include <gtkmm.h>
 
-#include "asm1492_Input_Frame.h"
+#include "../elements/asm1492_Input_Frame.h"
 
 class Librarian;
 

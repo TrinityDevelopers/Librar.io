@@ -1,9 +1,9 @@
 #include "asm1492_Browse_Catalog_Dialog.h"
 
-#include "../asm1492_Library.h"
+#include "../../asm1492_Library.h"
 
-#include "asm1492_Bundle_Row.h"
-#include "asm1492_Media_Row.h"
+#include "../elements/asm1492_Bundle_Row.h"
+#include "../elements/asm1492_Media_Row.h"
 
 Browse_Catalog_Dialog::Browse_Catalog_Dialog(Gtk::Window& parent) 
 	: Gtk::Dialog("Browse Catalog", parent), box(Gtk::ORIENTATION_HORIZONTAL), box_left(Gtk::ORIENTATION_VERTICAL) {

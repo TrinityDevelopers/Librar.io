@@ -2,7 +2,7 @@
 
 #include <gtkmm.h>
 
-#include "asm1492_Browse_Window.h"
+#include "../elements/asm1492_Browse_Window.h"
 
 class Media;
 class Bundle;

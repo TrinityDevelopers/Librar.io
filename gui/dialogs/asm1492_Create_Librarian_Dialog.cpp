@@ -1,7 +1,7 @@
 #include "asm1492_Create_Librarian_Dialog.h"
 
-#include "asm1492_Media_Row.h"
-#include "../asm1492_Library.h"
+#include "../elements/asm1492_Media_Row.h"
+#include "../../asm1492_Library.h"
 
 Create_Librarian_Dialog::Create_Librarian_Dialog(Gtk::Window& parent)
 	: Gtk::Dialog("Add Librarian", parent) {

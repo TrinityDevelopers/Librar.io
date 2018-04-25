@@ -1,7 +1,7 @@
 #include "asm1492_Add_Bundle_Dialog.h"
 
-#include "asm1492_Media_Row.h"
-#include "../asm1492_Library.h"
+#include "../elements/asm1492_Media_Row.h"
+#include "../../asm1492_Library.h"
 
 Add_Bundle_Dialog::Add_Bundle_Dialog(Gtk::Window& parent)
 	: Gtk::Dialog("Add Bundle", parent), medias(true) {
