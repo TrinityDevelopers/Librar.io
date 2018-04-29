@@ -6,7 +6,6 @@
 #include "../asm1492_Customer.h"
 #include "../asm1492_Librarian.h"
 #include "../asm1492_Transaction_Item.h"
-#include "../gui/asm1492_Gui_Handler.h"
 
 #include <sstream>
 
@@ -14,7 +13,7 @@ void Terminal_Controller::run_cli() {
 	init();
 	int cmd;
 	do read_cmd(&cmd);
-	while(execute_cmd(cmd) && Gui_Handler::run_terminal);
+	while(execute_cmd(cmd));
 }
 
 void Terminal_Controller::read_cmd(int* cmd) {

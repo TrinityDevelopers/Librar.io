@@ -1,5 +1,5 @@
 CXX := g++
-CXXFLAGS := -std=c++11 -g -pthread
+CXXFLAGS := -std=c++11 -g
 GTKFLAGS := `pkg-config gtkmm-3.0 --cflags --libs`
 TARGET := Librar.io
 

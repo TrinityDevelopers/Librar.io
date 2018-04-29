@@ -1,0 +1,149 @@
+{
+	"bundles" : 
+	[
+		{
+			"checked_out" : false,
+			"medias" : 
+			[
+				1003,
+				1002
+			],
+			"name" : "Fallout Set"
+		}
+	],
+	"medias" : 
+	[
+		{
+			"author" : "George Willis",
+			"checked_out" : false,
+			"copyright_year" : 1977,
+			"format" : "Book",
+			"genre" : "Education",
+			"page_count" : 19,
+			"title" : "George in the Jungle"
+		},
+		{
+			"checked_out" : false,
+			"director" : "",
+			"format" : "Movie",
+			"genre" : "Musical",
+			"leading_actors" : 
+			[
+				"Julie Andrews",
+				"Dick Van Dyke"
+			],
+			"producer" : "Disney",
+			"release_year" : 1950,
+			"runtime" : 75.0,
+			"title" : "Sound of Music"
+		},
+		{
+			"checked_out" : false,
+			"format" : "Video Game",
+			"genre" : "Adventure",
+			"release_year" : 2015,
+			"studio" : "Bethesda Softworks",
+			"title" : "Fallout 4"
+		},
+		{
+			"checked_out" : false,
+			"format" : "Video Game",
+			"genre" : "Adventure",
+			"release_year" : 2008,
+			"studio" : "Bethesda Softworks",
+			"title" : "Fallout 3"
+		},
+		{
+			"artist" : "Jeannie Miller",
+			"checked_out" : false,
+			"format" : "Music Album",
+			"genre" : "Pop",
+			"release_year" : 2018,
+			"title" : "I Do",
+			"tracks" : 
+			[
+				"I Do",
+				"Shark in the Water"
+			]
+		},
+		{
+			"checked_out" : false,
+			"format" : "Unspecified",
+			"genre" : "Education",
+			"title" : "Reference Globe"
+		},
+		{
+			"checked_out" : false,
+			"directors" : null,
+			"format" : "Television Show Season",
+			"genre" : "Family",
+			"leading_actors" : null,
+			"producer" : "Walter",
+			"release_year" : 1979,
+			"runtime" : 1249.0,
+			"season_number" : 1,
+			"title" : "The Waltons"
+		},
+		{
+			"checked_out" : false,
+			"director" : "Jon Favreau",
+			"format" : "Movie",
+			"genre" : "Superheroes",
+			"leading_actors" : 
+			[
+				"Robert Downy Jr.",
+				"Gwenyth Paltrow",
+				"Paul Bettany"
+			],
+			"producer" : "Kevin Feige",
+			"release_year" : 2008,
+			"runtime" : 120.0,
+			"title" : "Iron Man"
+		},
+		{
+			"author" : "Jules Verne",
+			"checked_out" : false,
+			"copyright_year" : 1980,
+			"format" : "Book",
+			"genre" : "Adventure",
+			"page_count" : 847,
+			"title" : "Journey to the Center of the Earth"
+		},
+		{
+			"author" : "Jules Verne",
+			"checked_out" : false,
+			"copyright_year" : 1885,
+			"format" : "Book",
+			"genre" : "Adventure",
+			"page_count" : 446,
+			"title" : "Twenty-Thousand Leagues Under the Sea"
+		}
+	],
+	"name" : "Library",
+	"users" : 
+	[
+		{
+			"name" : "Andrew Miller",
+			"pass_hex" : "692ba3baee2cff0ccf402e3144f6f3b4b61c8eed80daaf84f1034b203a704db3",
+			"type" : "Administrator"
+		},
+		{
+			"balance" : 0.0,
+			"checked_out_items" : null,
+			"email" : "andrew.miller2@mavs.uta.edu",
+			"name" : "Andrew Miller",
+			"pass_hex" : "",
+			"phone" : 8178933341,
+			"type" : "Customer"
+		},
+		{
+			"balance" : 0.0,
+			"checked_out_items" : null,
+			"email" : "jamiller@tcu.edu",
+			"name" : "Jeannie Miller",
+			"pass_hex" : "",
+			"phone" : 8176295216,
+			"type" : "Customer"
+		}
+	]
+}

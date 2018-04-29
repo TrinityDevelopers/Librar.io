@@ -66,22 +66,21 @@ bool Customer::is_checked_out(Bundle* bundle) {
 
 string Customer::to_string() {
 	stringstream stm;
-	stm << "Name:         " << name << endl;
-	stm << "ID Number:    " << id << endl;
+	stm << User::to_string();
 	stm << "Phone Number: " << phone << endl;
 	stm << "Email:        " << email << endl;
-	stm << "Balance:      " << "$" << setprecision(2) << fixed << balance << endl;
+	stm << "Balance:      " << get_balance_string() << endl;
 	return stm.str();
 }
 
-string Customer::to_compact_string() {
+string Customer::get_balance_string() {
 	stringstream stm;
-	stm << name << ", ID# " << id;
+	stm << "$" << setprecision(2) << fixed << balance;
 	return stm.str();
 }
 
 void Customer::save(Json::Value& customer) {
-	customer["name"] = name;
+	User::save(customer);
 	customer["phone"] = phone;
 	customer["email"] = email;
 	customer["balance"] = balance;

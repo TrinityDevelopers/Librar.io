@@ -177,7 +177,7 @@ bool Logout_Function::operator()() {
 }
 
 bool Load_Function::operator()() {
-	if(!controller->get_library()->load("librario_save.json"))
+	if(!controller->get_library()->load("librario_save.ldb"))
 		controller->get_view()->load_fail();
 	else
 		controller->get_view()->load();
@@ -185,7 +185,7 @@ bool Load_Function::operator()() {
 }
 
 bool Save_Function::operator()() {
-	controller->get_library()->save("librario_save.json");
+	controller->get_library()->save("librario_save.ldb");
 	controller->get_view()->save();
 	return true;
 }

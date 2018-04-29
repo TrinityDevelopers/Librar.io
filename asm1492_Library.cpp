@@ -16,6 +16,10 @@
 
 Library* Library::instance;
 
+const int Library::MEDIA_ID_LOW = 1000;
+const int Library::LIBRARIAN_ID_LOW = 1000000;
+const int Library::CUSTOMER_ID_LOW = 2000000;
+const int Library::TRANSACTION_ID_LOW = 0;
 
 Media* Library::create_new_media(Media::Format format, string title, string genre) {
 	Media* media;
@@ -44,6 +48,7 @@ Media* Library::create_new_media(Media::Format format, string title, string genr
 
 Media* Library::create_new_media(Media* media) {
 	medias[media->get_id_number()] = media;
+	saved = false;
 	return media;
 }
 
@@ -63,6 +68,7 @@ Bundle* Library::create_new_bundle(string name) {
 Bundle* Library::create_new_bundle(string name, vector<Media*> media) {
 	Bundle* bundle = new Bundle(name, media);
 	bundles[name] = bundle;
+	saved = false;
 	return bundle;
 }
 
@@ -81,31 +87,52 @@ Bundle* Library::create_new_bundle(Json::Value& bundle) {
 		ret->check_out();
 }
 
-Librarian* Library::create_new_librarian(string name) {
-	Librarian* librarian = new Librarian(name, current_librarian_id);
-	librarians[current_librarian_id] = librarian;
+User* Library::create_administrator(string name, string p_hex) {
+	User* admin = new User(User::Type::Administrator, name, current_librarian_id, p_hex);
+	administrator = admin;
+	users[current_librarian_id] = admin;
 	current_librarian_id++;
+	saved = false;
+	return admin;
+}
+
+User* Library::create_administrator(Json::Value& user) {
+	string name = user.get("name", "unknown").asString();
+	string p_hex = user.get("pass_hex", "").asString();
+	return create_administrator(name, p_hex);
+}
+
+Librarian* Library::create_new_librarian(string name, string p_hex) {
+	Librarian* librarian = new Librarian(name, current_librarian_id, p_hex);
+	librarians[current_librarian_id] = librarian;
+	users[current_librarian_id] = librarian;
+	current_librarian_id++;
+	saved = false;
 	return librarian;
 }
 
 Librarian* Library::create_new_librarian(Json::Value& librarian) {
 	string name = librarian.get("name", "unknown").asString();
-	return create_new_librarian(name);
+	string p_hex = librarian.get("pass_hex", "").asString();
+	return create_new_librarian(name, p_hex);
 }
 
-Customer* Library::create_new_customer(string name, long phone, string email, double balance) {
-	Customer* customer = new Customer(name, current_customer_id, phone, email, balance);
+Customer* Library::create_new_customer(string name, long phone, string email, string p_hex, double balance) {
+	Customer* customer = new Customer(name, current_customer_id, p_hex, phone, email, balance);
 	customers[current_customer_id] = customer;
+	users[current_customer_id] = customer;
 	current_customer_id++;
+	saved = false;
 	return customer;
 }
 
 Customer* Library::create_new_customer(Json::Value& customer) {
 	string name = customer.get("name", "unknown").asString();
+	string p_hex = customer.get("pass_hex", "").asString();
 	long phone = customer.get("phone", 0000000000).asInt64();
 	string email = customer.get("email", "").asString();
 	double balance = customer.get("balance", 0).asDouble();
-	Customer* cust = create_new_customer(name, phone, email, balance);
+	Customer* cust = create_new_customer(name, phone, email, p_hex, balance);
 	Json::Value items = customer["checked_out_items"];
 	for(int i = 0; i < items.size(); i++)
 		cust->add_transaction_item(Transaction_Item::load(items[i]));
@@ -116,6 +143,7 @@ Transaction* Library::create_new_transaction(Date check_out, Librarian* lib, Cus
 	Transaction* trans = new Transaction(current_transaction_id, check_out, lib, cust);
 	transactions[current_transaction_id] = trans;
 	current_transaction_id++;
+	saved = false;
 	return trans;
 }
 
@@ -131,10 +159,12 @@ Transaction* Library::create_new_transaction(Json::Value& transaction) {
 }
 
 bool Library::delete_media(int id) {
+	saved = false;
 	return medias.erase(id);
 }
 
 bool Library::delete_bundle(string name) {
+	saved = false;
 	return bundles.erase(name);
 }
 
@@ -150,6 +180,13 @@ vector<Bundle*> Library::get_all_bundles() {
 	for(pair<string, Bundle*> it : bundles)
 		bundle_vec.push_back(it.second);
 	return bundle_vec;
+}
+
+vector<User*> Library::get_all_users() {
+	vector<User*> user_vec;
+	for(pair<int, User*> it : users)
+		user_vec.push_back(it.second);
+	return user_vec;
 }
 
 vector<Librarian*> Library::get_all_librarians() {
@@ -179,27 +216,35 @@ bool Library::load(string file) {
 	Json::Reader reader;
 	if(!reader.parse(load_file, root))
 		return false;
+	name = root.get("name", "Library").asString();
+	file_path = file;
 	Json::Value media_list = root["medias"];
 	for(int i = 0; i < media_list.size(); i++)
 		create_new_media(media_list[i]);
 	Json::Value bundle_list = root["bundles"];
 	for(int i = 0; i < bundle_list.size(); i++)
 		create_new_bundle(bundle_list[i]);
-	Json::Value librarian_list = root["librarians"];
-	for(int i = 0; i < librarian_list.size(); i++)
-		create_new_librarian(librarian_list[i]);
-	Json::Value customer_list = root["customers"];
-	for(int i = 0; i < customer_list.size(); i++)
-		create_new_customer(customer_list[i]);
+	Json::Value user_list = root["users"];
+	for(int i = 0; i < user_list.size(); i++) {
+		if(user_list[i]["type"].asString() == "Administrator")
+			create_administrator(user_list[i]);
+		else if(user_list[i]["type"].asString() == "Librarian")
+			create_new_librarian(user_list[i]);
+		else if(user_list[i]["type"].asString() == "Customer")
+			create_new_customer(user_list[i]);
+	}
 	Json::Value transaction_list = root["transactions"];
 	for(int i = 0; i < transaction_list.size(); i++)
 		create_new_transaction(transaction_list[i]);
+	saved = true;
 	return true;
 }
 
 void Library::save(string file) {
 	ofstream save_file (file.c_str(), ofstream::trunc);
 	Json::Value root;
+	root["name"] = name;
+	file_path = file;
 	for(pair<int, Media*> it : medias) {
 		Json::Value media;
 		it.second->save(media);
@@ -210,15 +255,10 @@ void Library::save(string file) {
 		it.second->save(bundle);
 		root["bundles"].append(bundle);
 	}
-	for(pair<int, Librarian*> it : librarians) {
-		Json::Value librarian;
-		it.second->save(librarian);
-		root["librarians"].append(librarian);
-	}
-	for(pair<int, Customer*> it : customers) {
-		Json::Value customer;
-		it.second->save(customer);
-		root["customers"].append(customer);
+	for(pair<int, User*> it : users) {
+		Json::Value user;
+		it.second->save(user);
+		root["users"].append(user);
 	}
 	for(pair<int, Transaction*> it : transactions) {
 		Json::Value transaction;
@@ -229,6 +269,7 @@ void Library::save(string file) {
 		save_file << root;
 		save_file.close();
 	}
+	saved = true;
 }
 
 string Library::create_call_num(int id, string title) {
@@ -252,6 +293,12 @@ Media* Library::get_media(int id) {
 Bundle* Library::get_bundle(string name) {
 	if(get_instance()->bundles.count(name))
 		return get_instance()->bundles.at(name);
+	return NULL;
+}
+
+User* Library::get_user(int id) {
+	if(get_instance()->users.count(id))
+		return get_instance()->users.at(id);
 	return NULL;
 }
 
@@ -291,4 +338,11 @@ Library* Library::get_instance() {
 	if(!instance)
 		instance = new Library();
 	return instance;
+}
+
+void Library::delete_library() {
+	if(instance != NULL) {
+		delete instance;
+		instance = NULL;
+	}
 }

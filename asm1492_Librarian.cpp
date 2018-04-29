@@ -43,20 +43,3 @@ void Librarian::check_in(Customer* customer, vector<Media*> medias, vector<Bundl
 		}
 	}
 }
-
-string Librarian::to_compact_string() {
-	stringstream stm;
-	stm << name << ", ID# " << id;
-	return stm.str();
-}
-
-string Librarian::to_string() {
-	stringstream stm;
-	stm << "Name:      " << name << endl;
-	stm << "ID Number: " << id << endl;
-	return stm.str();
-}
-
-void Librarian::save(Json::Value& librarian) {
-	librarian["name"] = name;
-}

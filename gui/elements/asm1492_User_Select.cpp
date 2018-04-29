@@ -1,7 +1,6 @@
 #include "asm1492_User_Select.h"
 
-#include "../dialogs/asm1492_Create_Customer_Dialog.h"
-#include "../dialogs/asm1492_Create_Librarian_Dialog.h"
+#include "../dialogs/asm1492_Create_Account_Dialog.h"
 #include "../../asm1492_Library.h"
 #include "../../asm1492_Customer.h"
 #include "../../asm1492_Librarian.h"
@@ -30,11 +29,13 @@ Customer* Customer_Select::get_selected() {
 }
 
 void Customer_Select::new_customer_clicked() {
-	Create_Customer_Dialog dialog(window);
+	Create_Account_Dialog dialog(window);
 	if(dialog.run()) {
-		Customer* customer = dialog.create_customer();
-		combo_box.append(customer->to_compact_string());
-		customers.push_back(customer);
+		User* customer = dialog.create_account();
+		if(customer->get_type() == User::Type::Customer) {
+			combo_box.append(customer->to_compact_string());
+			customers.push_back((Customer*) customer);
+		}
 	}
 }
 
@@ -61,10 +62,12 @@ Librarian* Librarian_Select::get_selected() {
 }
 
 void Librarian_Select::new_librarian_clicked() {
-	Create_Librarian_Dialog dialog(window);
+	Create_Account_Dialog dialog(window);
 	if(dialog.run()) {
-		Librarian* librarian = dialog.create_librarian();
-		combo_box.append(librarian->to_compact_string());
-		librarians.push_back(librarian);
+		User* librarian = dialog.create_account();
+		if(librarian->get_type() == User::Type::Librarian) {
+			combo_box.append(librarian->to_compact_string());
+			librarians.push_back((Librarian*) librarian);
+		}
 	}
 }
