@@ -8,6 +8,8 @@
 
 Login_Window::Login_Window(Main_Window& parent_) : Gtk::Box(Gtk::ORIENTATION_VERTICAL), parent(parent_), create_account_button("Create Account"), login_button("Login") {
 	parent.set_title("Librar.io - Login");
+	parent.add_action("add_account", sigc::mem_fun(*this, &Login_Window::create_account));
+
 	Gtk::Box* input_box = Gtk::manage(new Gtk::Box());
 	pack_start(*input_box, Gtk::PACK_EXPAND_PADDING);
 	Gtk::Frame* frame = Gtk::manage(new Gtk::Frame());
@@ -57,6 +59,7 @@ Login_Window::Login_Window(Main_Window& parent_) : Gtk::Box(Gtk::ORIENTATION_VER
 }
 
 void Login_Window::set_inactive() {
+	parent.remove_action("add_account");
 	hide();
 }
 

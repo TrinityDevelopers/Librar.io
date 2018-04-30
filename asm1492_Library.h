@@ -46,6 +46,9 @@ public:
 	vector<Customer*> get_all_customers();
 	vector<Transaction*> get_all_transactions();
 
+	Customer* get_owner(Media* media);
+	Customer* get_owner(Bundle* bundle);
+
 	bool load(string file);
 	void save(string file);
 

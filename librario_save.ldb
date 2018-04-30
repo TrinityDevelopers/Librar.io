@@ -126,24 +126,6 @@
 			"name" : "Andrew Miller",
 			"pass_hex" : "692ba3baee2cff0ccf402e3144f6f3b4b61c8eed80daaf84f1034b203a704db3",
 			"type" : "Administrator"
-		},
-		{
-			"balance" : 0.0,
-			"checked_out_items" : null,
-			"email" : "andrew.miller2@mavs.uta.edu",
-			"name" : "Andrew Miller",
-			"pass_hex" : "",
-			"phone" : 8178933341,
-			"type" : "Customer"
-		},
-		{
-			"balance" : 0.0,
-			"checked_out_items" : null,
-			"email" : "jamiller@tcu.edu",
-			"name" : "Jeannie Miller",
-			"pass_hex" : "",
-			"phone" : 8176295216,
-			"type" : "Customer"
 		}
 	]
 }

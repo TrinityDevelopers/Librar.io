@@ -130,3 +130,34 @@ Media::Format Media::string_to_format(string format) {
 	else
 		return Format::Unspecified;
 }
+
+Glib::RefPtr<Gdk::Pixbuf> Media::icon_from_format(Media::Format form) {
+	Glib::ustring icon_name;
+	switch(form) {
+		case Media::Format::Unspecified: {
+			icon_name = "x-office-document";
+			break;
+		}
+		case Media::Format::Book: {
+			icon_name = "accessories-dictionary";
+			break;
+		}
+		case Media::Format::Movie: {
+			icon_name = "video-x-generic";
+			break;
+		}
+		case Media::Format::Music_Album: {
+			icon_name = "audio-headphones";
+			break;
+		}
+		case Media::Format::Television_Show_Season: {
+			icon_name = "video-display";
+			break;
+		}
+		case Media::Format::Video_Game: {
+			icon_name = "input-gaming";
+			break;
+		}
+	}
+	return Gtk::IconTheme::get_default()->load_icon(icon_name, 24);
+}

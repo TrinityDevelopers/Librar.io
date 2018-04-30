@@ -210,6 +210,24 @@ vector<Transaction*> Library::get_all_transactions() {
 	return transaction_vec;
 }
 
+Customer* Library::get_owner(Media* media) {
+	if(media->is_checked_out())
+		for(Customer* cust : get_all_customers())
+			for(Transaction_Item item : cust->get_checked_out_items())
+				if(item.contains(media))
+					return cust;
+	return NULL;
+}
+
+Customer* Library::get_owner(Bundle* bundle) {
+	if(bundle->is_checked_out())
+		for(Customer* cust : get_all_customers())
+			for(Transaction_Item item : cust->get_checked_out_items())
+				if(item.contains(bundle))
+					return cust;
+	return NULL;
+}
+
 bool Library::load(string file) {
 	ifstream load_file (file.c_str());
 	Json::Value root;

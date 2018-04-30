@@ -49,10 +49,11 @@ Create_Account_Dialog::Create_Account_Dialog(Gtk::Window& parent)
 
 	user_type_changed();
 	
-	add_button("_Cancel", 0);
+	add_button("_Cancel", 0)->set_image_from_icon_name("process-stop");
 	add_action_widget(create_account_button, 1);
 	create_account_button.set_can_default();
 	create_account_button.show();
+	create_account_button.set_image_from_icon_name("contact-new");
 	set_default_response(1);
 
 	get_action_area()->set_layout(Gtk::BUTTONBOX_EXPAND);

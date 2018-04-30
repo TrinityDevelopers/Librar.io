@@ -10,7 +10,5 @@ public:
 	Media* get_media() { return media; };
 	
 private:
-	Glib::RefPtr<Gdk::Pixbuf> icon_from_format(Media::Format form);
-
 	Media* media;
 };

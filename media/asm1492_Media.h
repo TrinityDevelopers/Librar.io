@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <sstream>
 #include <map>
+#include <gtkmm.h>
 
 #include "../json/asm1492_json.h"
 
@@ -52,6 +53,8 @@ public:
 
 	static string format_to_string(Format format);
 	static Format string_to_format(string format);
+
+	static Glib::RefPtr<Gdk::Pixbuf> icon_from_format(Media::Format form);
 
 protected:
 	Format format;

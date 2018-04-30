@@ -1,7 +1,5 @@
 #include "asm1492_Main_Window.h"
 
-#include "dialogs/asm1492_Add_Media_Dialog.h"
-#include "dialogs/asm1492_Add_Bundle_Dialog.h"
 #include "dialogs/asm1492_Browse_Catalog_Dialog.h"
 #include "dialogs/asm1492_Create_Account_Dialog.h"
 #include "dialogs/asm1492_Check_Out_Dialog.h"
@@ -103,6 +101,8 @@ void Main_Window::logout() {
 }
 
 bool Main_Window::on_delete_event(GdkEventAny* any_event) {
+	if(user_window != NULL)
+		user_window->set_dialog_status(0);
 	return !prompt_save();
 }
 
@@ -112,8 +112,10 @@ void Main_Window::exit_library() {
 }
 
 void Main_Window::new_library() {
-	if(prompt_save())
+	if(prompt_save()) {
+		logout();
 		Library::delete_library();
+	}
 }
 
 void Main_Window::open_library() {

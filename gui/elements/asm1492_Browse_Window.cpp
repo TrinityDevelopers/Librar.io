@@ -20,13 +20,13 @@ Browse_Window::Browse_Window(bool select) : vbox(Gtk::ORIENTATION_VERTICAL), sel
 void Browse_Window::add_row(Gtk::ListBoxRow* unmanaged_row) {
 	Gtk::ListBoxRow* row = Gtk::manage(unmanaged_row);
 	medias.append(*row);
-	row->show();
+	row->show_all();
 }
 
 void Browse_Window::clear() {
 	medias.unselect_all();
 	vector<Gtk::Widget*> children = medias.get_children();
-	for (Widget* row : children) {
+	for(Widget* row : children) {
 		medias.remove(*row);
 		delete row;
 	}

@@ -15,6 +15,7 @@ public:
 	void clear();
 	vector<Media*> get_selected_media();
 	vector<Bundle*> get_selected_bundles();
+	Gtk::ListBox* get_listbox() { return &medias; };
 
 private:
 	bool selectable;

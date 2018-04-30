@@ -47,14 +47,13 @@ void Librario_App::on_startup() {
 	submenu_edit->append_item(item);
 	win_menu->append_submenu("Edit", submenu_edit);
 
-	auto submenu_view = Gio::Menu::create();
-	win_menu->append_submenu("View", submenu_view);
-
 	auto submenu_librario = Gio::Menu::create();
+	submenu_librario->append("_Create Account", "win.add_account");
 	submenu_librario->append("_Create Media", "win.add_media");
 	submenu_librario->append("_Create Bundle", "win.add_bundle");
-	submenu_librario->append("_Create Librarian", "win.add_librarian");
-	submenu_librario->append("_Create Customer", "win.add_customer");
+	submenu_librario->append("_Check Out", "win.check_out");
+	submenu_librario->append("_Check In", "win.check_in");
+	submenu_librario->append("_Pay Balance", "win.pay_balance");
 	win_menu->append_submenu("Librar.io", submenu_librario);
 
 	auto submenu_help = Gio::Menu::create();
